@@ -58,7 +58,7 @@ export default function EnquiryTable({
             <tr className="table-section-header">
               <th colSpan="4" className="section-bo">BO / Enquiry Details</th>
               <th colSpan="4" className="section-part">Part Number Mapping</th>
-              <th colSpan="3" className="section-po">PO Number</th>
+              <th colSpan="2" className="section-po">PO Number</th>
               <th colSpan="2" className="section-generated">Generated</th>
               <th colSpan="1" className="section-actions">Actions</th>
             </tr>
@@ -72,15 +72,15 @@ export default function EnquiryTable({
                 Customer RFQ Date{renderSortIcon("customerRFQDate")}
               </th>
               <th>Item Description</th>
-              <th onClick={() => handleSort("enquiryNumber")}>
-                Inquiry Number Generated{renderSortIcon("enquiryNumber")}
-              </th>
+              
 
               {/* Part Number Mapping */}
               <th>Customer Part No</th>
-              <th>Customer Part Name</th>
+            <th>BO Part Name</th>
               <th>Modified BO Part No</th>
-              <th>BO Part Name</th>
+               <th onClick={() => handleSort("enquiryNumber")}>
+                Inquiry Number Generated{renderSortIcon("enquiryNumber")}
+              </th>
 
               {/* PO */}
               <th onClick={() => handleSort("poDetails.supplierName")}>
@@ -123,29 +123,11 @@ export default function EnquiryTable({
                         : enq.itemDescription
                       : "—"}
                   </td>
-                  <td data-label="Inquiry Number">
-                    <span className="cell-badge">{enq.enquiryNumber || "—"}</span>
-                  </td>
+            
 
                   {/* Part Number Mapping */}
                   <td data-label="Customer Part No">
                     {enq.partMapping?.customerPartNo || "—"}
-                  </td>
-                  <td data-label="Customer Part Name">
-                    {enq.partMapping?.customerPartName
-                      ? enq.partMapping.customerPartName.length > 25
-                        ? enq.partMapping.customerPartName.substring(0, 25) + "..."
-                        : enq.partMapping.customerPartName
-                      : "—"}
-                  </td>
-                  <td data-label="Modified BO Part No">
-                    {enq.partMapping?.modifiedBOPartNo ? (
-                      <span className="cell-bo-part">
-                        {enq.partMapping.modifiedBOPartNo}
-                      </span>
-                    ) : (
-                      "—"
-                    )}
                   </td>
                   <td data-label="BO Part Name">
                     {enq.partMapping?.boPartName
@@ -153,6 +135,18 @@ export default function EnquiryTable({
                         ? enq.partMapping.boPartName.substring(0, 20) + "..."
                         : enq.partMapping.boPartName
                       : "—"}
+                  </td>
+                   <td data-label="Modified BO Part No">
+                    {enq.partMapping?.modifiedBOPartNo ? (
+                      <span className="cell-bo-part">
+                        {enq.partMapping.modifiedBOPartNo}
+                      </span>
+                    ) : (
+                      "—"
+                    )}
+                  </td> 
+                      <td data-label="Inquiry Number">
+                    <span className="cell-badge">{enq.enquiryNumber || "—"}</span>
                   </td>
 
                   {/* PO Section */}
